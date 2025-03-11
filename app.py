@@ -22,6 +22,15 @@ class User(db.Model):
     username = db.Column(db.String(80), unique=True, nullable=False)
     email = db.Column(db.String(120), unique=True, nullable=False)
     password = db.Column(db.String(255), nullable=False)
+    created_at = db.Column(
+        db.DateTime, nullable=False, server_default=db.func.now()
+    )  # Fixed
+    updated_at = db.Column(
+        db.DateTime,
+        nullable=False,
+        server_default=db.func.now(),
+        onupdate=db.func.now(),
+    )  # Fixed
 
 
 # Post Model
@@ -39,6 +48,7 @@ class Post(db.Model):
     author = db.relationship("User", backref=db.backref("posts", cascade="all, delete"))
 
 
+# Register User
 @app.route("/register", methods=["POST"])
 def register():
     username = request.form.get("username")
@@ -49,7 +59,7 @@ def register():
     if not username or not email or not password:
         return jsonify({"error": "Missing required fields"}), 400
 
-    # Check if user already exists
+    # Check if user exists
     existing_user = User.query.filter(
         (User.username == username) | (User.email == email)
     ).first()
