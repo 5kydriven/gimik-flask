@@ -1,0 +1,21 @@
+{
+	"name": "gimik-flask",
+	"version": "1.0.0",
+	"description": "gimik-flask Project",
+	"main": "tailwind.config.js",
+	"scripts": {
+		"dev": "concurrently \"npx @tailwindcss/cli -i ./static/css/input.css -o ./static/css/output.css --watch\" \"flask run\"",
+		"tw-build": "npx tailwindcss -i ./static/css/input.css -o ./static/css/output.css"
+	},
+	"keywords": [],
+	"author": "",
+	"license": "ISC",
+	"dependencies": {
+		"@tailwindcss/cli": "^4.0.12",
+		"daisyui": "^5.0.0",
+		"tailwindcss": "^4.0.12"
+	},
+	"devDependencies": {
+		"concurrently": "^9.1.2"
+	}
+}

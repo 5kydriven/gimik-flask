@@ -1,0 +1,129 @@
+{% extends "base.html"%} {% block title%} Welcome {% endblock%} {% block content%}
+<div class="flex flex-col max-w-lg w-full">
+	<div class="flex items-center gap-4 w-full bg-white shadow-md border border-gray-200 p-4 rounded-lg">
+		<div class="avatar">
+			<div class="w-8 rounded-full">
+				<img src="https://img.daisyui.com/images/stock/photo-1534528741775-53994a69daeb.webp" />
+			</div>
+		</div>
+		<label class="floating-label w-full">
+			<input
+				type="text"
+				placeholder="What's your gimik?"
+				class="input input-md w-full"
+			/>
+			<span>Your Gimik</span>
+		</label>
+		<button class="btn btn-primary">Post</button>
+	</div>
+	<div class="divider"></div>
+
+	<div class="flex flex-col gap-2">
+		<div class="card card-md bg-white shadow-md">
+			<div class="card-body p-4 bg-white rounded-lg flex-row border border-gray-200 items-start">
+				<div class="avatar">
+					<div class="w-8 rounded-full">
+						<img src="https://img.daisyui.com/images/stock/photo-1534528741775-53994a69daeb.webp" />
+					</div>
+				</div>
+				<div class="flex flex-col gap-2">
+					<div class="flex flex-col">
+						<div class="flex items-center gap-2">
+							<h2 class="font-bold">John Doe</h2>
+							<span class="text-gray-500">1d</span>
+						</div>
+						<p>A card component has a figure, a body part, and inside body there are title and actions parts</p>
+					</div>
+					<figure>
+						<img
+							src="https://img.daisyui.com/images/stock/photo-1606107557195-0e29a4b5b4aa.webp"
+							alt="Shoes"
+							class="rounded"
+						/>
+					</figure>
+
+					<div class="flex gap-2 item text-gray-500">
+						<button class="btn btn-ghost rounded-full btn-sm">
+							<img
+								src="{{ url_for('static', filename='icons/heart.svg') }}"
+								class="w-5 h-5 text-gray-500"
+								alt="Heart"
+							/>
+							516
+						</button>
+						<button class="btn btn-ghost rounded-full btn-sm">
+							<img
+								src="{{ url_for('static', filename='icons/chat-bubble-oval-right.svg') }}"
+								class="w-5 h-5 text-gray-500"
+								alt="Chat Bubble Oval Right"
+							/>
+							120
+						</button>
+						<button class="btn btn-ghost rounded-full btn-sm">
+							<img
+								src="{{ url_for('static', filename='icons/arrow-path-rounded-square.svg') }}"
+								class="w-5 h-5 text-gray-500"
+								alt="Arrow Path Rounded Square"
+							/>
+							12
+						</button>
+					</div>
+				</div>
+			</div>
+		</div>
+
+		<div class="card card-md bg-white shadow-md">
+			<div class="card-body p-4 bg-white rounded-lg flex-row border border-gray-200 items-start">
+				<div class="avatar">
+					<div class="w-8 rounded-full">
+						<img src="https://img.daisyui.com/images/stock/photo-1534528741775-53994a69daeb.webp" />
+					</div>
+				</div>
+				<div class="flex flex-col gap-2">
+					<div class="flex flex-col">
+						<div class="flex items-center gap-2">
+							<h2 class="font-bold">John Doe</h2>
+							<span class="text-gray-500">1d</span>
+						</div>
+						<p>A card component has a figure, a body part, and inside body there are title and actions parts</p>
+					</div>
+					<figure>
+						<img
+							src="https://img.daisyui.com/images/stock/photo-1606107557195-0e29a4b5b4aa.webp"
+							alt="Shoes"
+							class="rounded"
+						/>
+					</figure>
+
+					<div class="flex gap-2 item">
+						<button class="btn btn-ghost rounded-full btn-sm">
+							<img
+								src="{{ url_for('static', filename='icons/heart.svg') }}"
+								class="w-6 h-6"
+								alt="Heart"
+							/>
+							516
+						</button>
+						<button class="btn btn-ghost rounded-full btn-sm">
+							<img
+								src="{{ url_for('static', filename='icons/chat-bubble-oval-right.svg') }}"
+								class="w-6 h-6"
+								alt="Chat Bubble Oval Right"
+							/>
+							120
+						</button>
+						<button class="btn btn-ghost rounded-full btn-sm">
+							<img
+								src="{{ url_for('static', filename='icons/arrow-path-rounded-square.svg') }}"
+								class="w-6 h-6"
+								alt="Arrow Path Rounded Square"
+							/>
+							12
+						</button>
+					</div>
+				</div>
+			</div>
+		</div>
+	</div>
+</div>
+{% endblock %}

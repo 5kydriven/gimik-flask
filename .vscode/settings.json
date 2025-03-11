@@ -1,0 +1,23 @@
+{
+	"editor.formatOnSave": true,
+	"editor.defaultFormatter": "ms-python.black-formatter",
+	"[python]": {
+		"editor.defaultFormatter": "ms-python.black-formatter"
+	},
+	"[html]": {
+		"editor.defaultFormatter": "esbenp.prettier-vscode"
+	},
+	"[jinja-html]": {
+		"editor.defaultFormatter": "samuelcolvin.jinjahtml"
+	},
+	"files.associations": {
+		"*.html": "jinja-html",
+		"*.jinja": "jinja-html",
+		"*.j2": "jinja-html"
+	},
+	"prettier.bracketSameLine": false,
+	"prettier.printWidth": 120,
+	"prettier.tabWidth": 2,
+	"prettier.useTabs": true,
+	"prettier.bracketSpacing": true
+}

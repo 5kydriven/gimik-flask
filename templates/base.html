@@ -1,0 +1,108 @@
+<!DOCTYPE html>
+<html lang="en">
+	<head>
+		<meta charset="UTF-8" />
+		<meta
+			name="viewport"
+			content="width=device-width, initial-scale=1.0"
+		/>
+		<link
+			href="{{ url_for('static', filename='css/output.css') }}"
+			rel="stylesheet"
+		/>
+		<title>{% block title%} Gimik {% endblock%}</title>
+	</head>
+	<body>
+		<main class="bg-slate-100">
+			<div class="navbar bg-base-100 shadow-sm z-30">
+				<div class="max-w-screen-lg flex justify-between w-full mx-auto items-center">
+					<label class="text-xl font-bold">GIMIK</label>
+
+					<!-- <button class="btn">Sign In</button> -->
+				</div>
+			</div>
+			<div class="h-[calc(100vh-64px)] overflow-auto w-full">
+				<div class="max-w-screen-lg mx-auto flex justify-center items-start gap-4 relative py-4">
+					{% block content %} {% endblock %}
+
+					<div class="card bg-base-100 w-72 shadow-md sticky top-5">
+						<div class="card-body items-center text-center rounded-lg justify-center gap-4 border border-gray-200">
+							<h2 class="text-lg font-bold">Log in or sign up for Gimik</h2>
+							<p>See what people are gimmiking about and join the gimik.</p>
+
+							<button
+								class="btn btn-soft w-full"
+								onclick="my_modal_1.showModal()"
+							>
+								Create account
+							</button>
+						</div>
+					</div>
+				</div>
+			</div>
+		</main>
+		<dialog
+			id="my_modal_1"
+			class="modal"
+		>
+			<div class="modal-box">
+				<form
+					class="card card-md gap-4"
+					id="registerForm"
+				>
+					<div class="card-title flex justify-between">
+						<h2 class="card-title font-bold text-xl">Sign In to your account</h2>
+						<button
+							class="btn btn-sm btn-circle btn-ghost"
+							onclick="my_modal_1.close()"
+						>
+							✕
+						</button>
+					</div>
+					<div class="card-body p-0">
+						<fieldset class="fieldset">
+							<legend class="fieldset-legend">Username</legend>
+							<input
+								type="text"
+								class="input w-full"
+								name="username"
+								placeholder="UnicornShittingRainbow01"
+							/>
+						</fieldset>
+						<fieldset class="fieldset">
+							<legend class="fieldset-legend">Email</legend>
+							<input
+								type="email"
+								class="input w-full"
+								name="email"
+								placeholder="john@gmail.com"
+							/>
+						</fieldset>
+						<fieldset class="fieldset">
+							<legend class="fieldset-legend">Password</legend>
+							<input
+								type="password"
+								name="password"
+								class="input w-full"
+							/>
+						</fieldset>
+					</div>
+
+					<button
+						class="btn btn-primary btn-block"
+						type="submit"
+					>
+						Register
+					</button>
+				</form>
+			</div>
+			<form
+				method="dialog"
+				class="modal-backdrop"
+			>
+				<button>close</button>
+			</form>
+		</dialog>
+	</body>
+	<script src="{{ url_for('static', filename='js/test.js') }}"></script>
+</html>
