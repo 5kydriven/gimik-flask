@@ -18,7 +18,9 @@
 				<div class="max-w-screen-lg flex justify-between w-full mx-auto items-center">
 					<label class="text-xl font-bold">GIMIK</label>
 
-					<!-- <button class="btn">Sign In</button> -->
+					{%if user %}
+						<button class="btn" id="sign_out">Sign Out</button>
+					{%endif%}
 				</div>
 			</div>
 			<div class="h-[calc(100vh-64px)] overflow-auto w-full">
@@ -27,17 +29,24 @@
 
 					<div class="card bg-base-100 w-72 shadow-md sticky top-5">
 						<div class="card-body items-center text-center rounded-lg justify-center gap-4 border border-gray-200">
-							<h2 class="text-lg font-bold">Log in or sign up for Gimik</h2>
-							<p>See what people are gimmiking about and join the gimik.</p>
+							{% if not user%}
+								<h2 class="text-lg font-bold">Log in or sign up for Gimik</h2>
+								<p>See what people are gimmiking about and join the gimik.</p>
 
-							<button
-								class="btn btn-soft w-full"
-								onclick="my_modal_1.showModal()"
-							>
-								Create account
-							</button>
+								<button class="btn btn-primary w-full" onclick="sign_in_modal.showModal()">Sign In</button>
+								<button
+									class="btn btn-soft w-full"
+									onclick="my_modal_1.showModal()"
+								>
+									Sign Up
+								</button>
+							{%else%}
+								<h2 class="text-lg font-bold">Hello, {{user.username}}</h2>
+								<p>See what people are gimmiking about and join the gimik.</p>
+							{% endif %}
 						</div>
 					</div>
+
 				</div>
 			</div>
 		</main>
@@ -51,7 +60,7 @@
 					id="registerForm"
 				>
 					<div class="card-title flex justify-between">
-						<h2 class="card-title font-bold text-xl">Sign In to your account</h2>
+						<h2 class="card-title font-bold text-xl">Create your account</h2>
 						<button
 							class="btn btn-sm btn-circle btn-ghost"
 							onclick="my_modal_1.close()"
@@ -66,6 +75,7 @@
 								type="text"
 								class="input w-full"
 								name="username"
+								required
 								placeholder="UnicornShittingRainbow01"
 							/>
 						</fieldset>
@@ -75,6 +85,7 @@
 								type="email"
 								class="input w-full"
 								name="email"
+								required
 								placeholder="john@gmail.com"
 							/>
 						</fieldset>
@@ -83,6 +94,7 @@
 							<input
 								type="password"
 								name="password"
+								required
 								class="input w-full"
 							/>
 						</fieldset>
@@ -93,6 +105,62 @@
 						type="submit"
 					>
 						Register
+					</button>
+				</form>
+			</div>
+			<form
+				method="dialog"
+				class="modal-backdrop"
+			>
+				<button>close</button>
+			</form>
+		</dialog>
+
+		<dialog
+			id="sign_in_modal"
+			class="modal"
+		>
+			<div class="modal-box">
+				<form
+					class="card card-md gap-4"
+					id="loginForm"
+				>
+					<div class="card-title flex justify-between">
+						<h2 class="card-title font-bold text-xl">Sign In to your account</h2>
+						<button
+							class="btn btn-sm btn-circle btn-ghost"
+							onclick="sign_in_modal.close()"
+						>
+							✕
+						</button>
+					</div>
+					<div class="card-body p-0">
+						<fieldset class="fieldset">
+							<legend class="fieldset-legend">Email</legend>
+							<input
+								type="email"
+								class="input w-full"
+								name="email"
+								required
+								placeholder="john@gmail.com"
+							/>
+						</fieldset>
+						<fieldset class="fieldset">
+							<legend class="fieldset-legend">Password</legend>
+							<input
+								type="password"
+								name="password"
+								required
+								class="input w-full"
+							/>
+						</fieldset>
+					</div>
+
+					<button
+						class="btn btn-primary btn-block"
+						type="submit"
+					>
+						Sign In
 					</button>
 				</form>
 			</div>

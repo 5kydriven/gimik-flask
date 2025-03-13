@@ -1,6 +1,7 @@
 from flask import Flask
 from flask_sqlalchemy import SQLAlchemy
 import uuid
+from datetime import datetime, timezone
 
 app = Flask(__name__)
 
@@ -19,14 +20,14 @@ class BaseModel(db.Model):
     __abstract__ = True
     id = db.Column(db.String(36), primary_key=True, default=generate_uuid)
     created_at = db.Column(
-        db.DateTime, nullable=False, server_default=db.func.now()
-    )  # <-- Fix
+        db.DateTime, nullable=False, default=lambda: datetime.now(timezone.utc)
+    )
     updated_at = db.Column(
         db.DateTime,
         nullable=False,
-        server_default=db.func.now(),
-        onupdate=db.func.now(),
-    )  # <-- Fix
+        default=lambda: datetime.now(timezone.utc),
+        onupdate=lambda: datetime.now(timezone.utc),
+    )
 
 
 # User Model
@@ -52,7 +53,6 @@ class User(BaseModel):
 class Post(BaseModel):
     __tablename__ = "posts"
 
-    title = db.Column(db.String(255), nullable=False)
     content = db.Column(db.Text, nullable=False)
     author_id = db.Column(
         db.String(36), db.ForeignKey("users.id", ondelete="CASCADE"), nullable=False
