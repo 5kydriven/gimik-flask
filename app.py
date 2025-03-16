@@ -190,6 +190,24 @@ def get_post(post_id):
     )
 
 
+@app.route("/posts/<string:post_id>", methods=["DELETE"])
+def delete_post(post_id):
+    if "user_id" not in session:
+        return jsonify({"error": "Unauthorized"}), 401
+
+    post = Post.query.get(post_id)
+    if not post:
+        return jsonify({"error": "Post not found"}), 404
+
+    if post.author_id != session["user_id"]:
+        return jsonify({"error": "You can only delete your own posts"}), 403
+
+    db.session.delete(post)
+    db.session.commit()
+
+    return jsonify({"message": "Post deleted successfully"}), 200
+
+
 @app.route("/like/<string:post_id>", methods=["POST"])
 def like_post(post_id):
     if "user_id" not in session:

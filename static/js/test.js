@@ -104,6 +104,22 @@ document.addEventListener('DOMContentLoaded', function () {
 		});
 	});
 
+	document.querySelectorAll('.delete-button').forEach((button) => {
+		button.addEventListener('click', async () => {
+			const postId = button.dataset.postId;
+
+			try {
+				const response = await fetch(`/posts/${postId}`, { method: 'DELETE' });
+				const data = await response.json();
+
+				alert(data.message || data.error);
+				window.location.href = '/';
+			} catch (error) {
+				console.error('Error:', error);
+			}
+		});
+	});
+
 	if (logoutButton) {
 		logoutButton.addEventListener('click', async function () {
 			const response = await fetch('/logout', { method: 'GET' });
@@ -120,8 +136,12 @@ document.addEventListener('DOMContentLoaded', function () {
 		postButton.addEventListener('click', function (event) {
 			event.preventDefault();
 
-			const formData = new FormData();
+			if (!postInput.value.trim()) {
+				alert('Post content cannot be empty!');
+				return;
+			}
 
+			const formData = new FormData();
 			formData.append('content', postInput.value);
 
 			fetch('/posts', {
